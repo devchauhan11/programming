@@ -1,77 +1,94 @@
-
 #include <stdio.h>
-#include <string.h>
+int main()
+{
+   int food_id, amount,total_amount=0, final_bill;
+   int vadapav_qty=0,sandwich_qty=0,maggi_qty=0,dabeli_qty=0;
+   char choice;
+   while (1)
+   {
 
-#define MAX_ITEMS 10
-                    
-// Structure to represent a menu item
-struct MenuItem {
-    int code;
-    char name[20];
-    float price;
-};
+      printf("-------food-menu-----\n");
+      printf("1.vadapav price=40\n");
+      printf("2.sandwich price=35\n");
+      printf("3.maggi price=80\n");
+      printf("4.dabeli price=35\n");
+      printf("Enter your choice :");
+      scanf("%d", &food_id);
+      if (food_id == 1)
+      {
+         printf("your choose Vadapav\n");
+         printf("Enter qty of vadapav:");
+         scanf("%d", &vadapav_qty);
+         amount = 40 * vadapav_qty;
+         total_amount += amount;
+         
+         printf("Amount :%d\n", amount);
+         
+         
+         
 
-// Structure to represent an order
-struct Order {
-    struct MenuItem item;
-    int quantity;
-};
+      }
 
-int main() {
-    struct MenuItem menu[] = {
-        {1, "Burger", 50.0},
-        {2, "Pizza", 120.0},
-        {3, "Sandwich", 40.0},
-        {4, "Fries", 30.0},
-        {5, "Coke", 20.0}
-    };
-    int menuSize = sizeof(menu) / sizeof(menu[0]);
-    struct Order orders[MAX_ITEMS];
-    int orderCount = 0;
+      else if(food_id == 2)
+      {
+         printf("your choose sandwich\n");
+         printf("Enter qty of sandwich:");
+         scanf("%d", &sandwich_qty);
+         amount = 35 * sandwich_qty;
+         total_amount+=amount;     //calculate total amount of food 
+         printf("Amount :%d\n", amount);
+         
+      }
 
-    int code, quantity;
+      else if (food_id == 3)
+      {
+         printf("your choose maggi\n");
+         printf("Enter qty of maggi:");
+         scanf("%d", &maggi_qty);
+         amount = 40 * maggi_qty;
+         total_amount+=amount;        //calculate total amount of food 
 
-    printf("====== MENU ======\n");
-    for (int i = 0; i < menuSize; i++) {
-        printf("%d. %s - ₹%.2f\n", menu[i].code, menu[i].name, menu[i].price);
-    }
-    printf("==================\n");
+         printf("Amount :%d\n", amount);
+         
+      }
+      if (food_id == 4)
+      {
+         printf("your choose dabeli\n");
+         printf("Enter qty of dabeli:");
+         scanf("%d", &dabeli_qty);
+         amount = 35 * dabeli_qty;
+         total_amount+=amount;       //calculate total amount of food 
+         printf("Amount :%d\n", amount);
+         
+      }
+      printf("you want to add more item ?y or n :");
+      scanf(" %c", &choice);
+      
+      if(choice=='n')
+      {
+         printf("\n-------- FINAL BILL --------\n");
+         if (vadapav_qty > 0)
+             printf("Vadapav   x %d = Rs. %d\n", vadapav_qty, vadapav_qty * 40);
+         if (sandwich_qty > 0)
+             printf("Sandwich  x %d = Rs. %d\n", sandwich_qty, sandwich_qty * 35);
+         if (maggi_qty > 0)
+             printf("Maggi     x %d = Rs. %d\n", maggi_qty, maggi_qty * 80);
+         if (dabeli_qty > 0)
+             printf("Dabeli    x %d = Rs. %d\n", dabeli_qty, dabeli_qty * 35);
+     
+         printf("----------------------------\n");
+         printf("Total Amount: Rs. %d\n", total_amount);
+         printf("----------------------------\n");
+          break;
 
-    while (1) {
-        printf("Enter item code (0 to finish): ");
-        scanf("%d", &code);
-        if (code == 0)
-            break;
+      }
 
-        int found = 0;
-        for (int i = 0; i < menuSize; i++) {
-            if (menu[i].code == code) {
-                found = 1;
-                printf("Enter quantity for %s: ", menu[i].name);
-                scanf("%d", &quantity);
-                orders[orderCount].item = menu[i];
-                orders[orderCount].quantity = quantity;
-                orderCount++;
-                break;
-            }
-        }
-        if (!found) {
-            printf("Invalid code. Try again.\n");
-        }
-    }
 
-    // Print bill
-    float total = 0;
-    printf("\n====== BILL ======\n");
-    for (int i = 0; i < orderCount; i++) {
-        float amount = orders[i].item.price * orders[i].quantity;
-        total += amount;
-        printf("%s x %d = ₹%.2f\n", orders[i].item.name, orders[i].quantity, amount);
-    }
-    printf("------------------\n");
-    printf("Total: ₹%.2f\n", total);
-    printf("==================\n");
+         
 
-    return 0;
+
+
+   }
 }
+
 
